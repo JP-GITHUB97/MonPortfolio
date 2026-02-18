@@ -102,7 +102,7 @@ $$(".gallery__item").forEach(item => {
     if (!el) return;
 
     const words = [
-        "Je suis",
+        "Je suis :",
         "Ingénieur GTB/GTC",
         "Automatisme & Supervision"
     ];
