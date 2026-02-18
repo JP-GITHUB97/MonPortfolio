@@ -96,3 +96,48 @@ $$(".gallery__item").forEach(item => {
         openLightbox(img.src, img.alt, cap ? cap.textContent : "");
     });
 });
+
+(() => {
+    const el = document.getElementById("typewriter");
+    if (!el) return;
+
+    const words = [
+        "Je suis",
+        "Ingénieur GTB/GTC",
+        "Automatisme & Supervision"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typingSpeed = 70;      // vitesse écriture
+    const deletingSpeed = 40;    // vitesse effacement
+    const pauseAfterWord = 900;  // pause après un mot complet
+
+    function tick() {
+        const current = words[wordIndex];
+
+        if (!isDeleting) {
+            charIndex++;
+            el.textContent = current.substring(0, charIndex);
+
+            if (charIndex === current.length) {
+                isDeleting = true;
+                return setTimeout(tick, pauseAfterWord);
+            }
+            return setTimeout(tick, typingSpeed);
+        } else {
+            charIndex--;
+            el.textContent = current.substring(0, charIndex);
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+            return setTimeout(tick, deletingSpeed);
+        }
+    }
+
+    tick();
+})();
