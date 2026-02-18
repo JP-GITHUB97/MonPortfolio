@@ -3,45 +3,50 @@ const $ = (sel, parent = document) => parent.querySelector(sel);
 const $$ = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
 
 /* Year */
-$("#year").textContent = new Date().getFullYear();
+const yearEl = $("#year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* Mobile nav */
 const navToggle = $("#navToggle");
 const navLinks = $("#navLinks");
 
-navToggle.addEventListener("click", () => {
-    const open = navLinks.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(open));
-});
-
-/* Close nav on click (mobile) */
-$$(".nav__link").forEach(a => {
-    a.addEventListener("click", () => {
-        if (navLinks.classList.contains("is-open")) {
-            navLinks.classList.remove("is-open");
-            navToggle.setAttribute("aria-expanded", "false");
-        }
+if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("is-open");
+        navToggle.setAttribute("aria-expanded", String(open));
     });
-});
+
+    /* Close nav on click (mobile) */
+    $$(".nav__link").forEach(a => {
+        a.addEventListener("click", () => {
+            if (navLinks.classList.contains("is-open")) {
+                navLinks.classList.remove("is-open");
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    });
+}
 
 /* Reveal on scroll */
 const revealEls = $$(".reveal");
-const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add("is-visible");
-    });
-}, { threshold: 0.12 });
+if (revealEls.length) {
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add("is-visible");
+        });
+    }, { threshold: 0.12 });
 
-revealEls.forEach(el => io.observe(el));
+    revealEls.forEach(el => io.observe(el));
+}
 
 /* Active nav link while scrolling */
-const sections = ["accueil", "apropos", "projets", "competences", "experience", "contact", "galerie"]
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-
+const sectionIds = ["accueil", "apropos", "projets", "competences", "experience", "formation", "contact", "galerie"];
+const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 const navItems = $$(".nav__link");
 
-const setActive = () => {
+function setActive() {
+    if (!sections.length || !navItems.length) return;
+
     let currentId = "accueil";
     const y = window.scrollY + 140;
 
@@ -54,10 +59,20 @@ const setActive = () => {
         const id = href && href.startsWith("#") ? href.slice(1) : "";
         a.classList.toggle("is-active", id === currentId);
     });
-};
+}
 
 window.addEventListener("scroll", setActive, { passive: true });
 setActive();
+
+/* Footer "Haut ↑" : fix fiable */
+const toTop = $("#toTop");
+if (toTop) {
+    toTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        history.replaceState(null, "", "#top");
+    });
+}
 
 /* Gallery lightbox */
 const lightbox = $("#lightbox");
@@ -65,26 +80,32 @@ const lightboxImg = $("#lightboxImg");
 const lightboxCaption = $("#lightboxCaption");
 const lightboxClose = $("#lightboxClose");
 
-const openLightbox = (src, alt, caption) => {
+function openLightbox(src, alt, caption) {
+    if (!lightbox || !lightboxImg || !lightboxCaption) return;
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     lightboxImg.src = src;
     lightboxImg.alt = alt || "";
     lightboxCaption.textContent = caption || "";
-};
+}
 
-const closeLightbox = () => {
+function closeLightbox() {
+    if (!lightbox || !lightboxImg || !lightboxCaption) return;
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImg.src = "";
     lightboxImg.alt = "";
     lightboxCaption.textContent = "";
-};
+}
 
-lightboxClose.addEventListener("click", closeLightbox);
-lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeLightbox();
-});
+if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+
+if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+}
+
 window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
 });
@@ -93,17 +114,18 @@ $$(".gallery__item").forEach(item => {
     item.addEventListener("click", () => {
         const img = $("img", item);
         const cap = $("figcaption", item);
+        if (!img) return;
         openLightbox(img.src, img.alt, cap ? cap.textContent : "");
     });
 });
 
+/* Typewriter */
 (() => {
     const el = document.getElementById("typewriter");
     if (!el) return;
 
     const words = [
-        "Je suis :",
-        "Ingénieur GTB/GTC",
+        "Je suis Ingénieur GTB/GTC",
         "Automatisme & Supervision"
     ];
 
@@ -111,9 +133,10 @@ $$(".gallery__item").forEach(item => {
     let charIndex = 0;
     let isDeleting = false;
 
-    const typingSpeed = 70;      // vitesse écriture
-    const deletingSpeed = 40;    // vitesse effacement
-    const pauseAfterWord = 900;  // pause après un mot complet
+    const typingSpeed = 65;
+    const deletingSpeed = 35;
+    const pauseAfterWord = 900;
+    const pauseAfterDelete = 200;
 
     function tick() {
         const current = words[wordIndex];
@@ -134,6 +157,7 @@ $$(".gallery__item").forEach(item => {
             if (charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
+                return setTimeout(tick, pauseAfterDelete);
             }
             return setTimeout(tick, deletingSpeed);
         }
