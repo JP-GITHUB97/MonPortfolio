@@ -1,41 +1,98 @@
-// Burger menu
-const burger = document.getElementById("burger");
-const nav = document.getElementById("nav");
+// Helpers
+const $ = (sel, parent = document) => parent.querySelector(sel);
+const $$ = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
 
-if (burger && nav) {
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("nav--open");
+/* Year */
+$("#year").textContent = new Date().getFullYear();
+
+/* Mobile nav */
+const navToggle = $("#navToggle");
+const navLinks = $("#navLinks");
+
+navToggle.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(open));
+});
+
+/* Close nav on click (mobile) */
+$$(".nav__link").forEach(a => {
+    a.addEventListener("click", () => {
+        if (navLinks.classList.contains("is-open")) {
+            navLinks.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+        }
     });
+});
 
-    // Close menu on link click (mobile)
-    nav.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", () => nav.classList.remove("nav--open"));
+/* Reveal on scroll */
+const revealEls = $$(".reveal");
+const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("is-visible");
     });
-}
+}, { threshold: 0.12 });
 
-// Active link on scroll
-const sections = ["home", "about", "projects", "skills", "experience", "contact"]
-    .map((id) => document.getElementById(id))
+revealEls.forEach(el => io.observe(el));
+
+/* Active nav link while scrolling */
+const sections = ["accueil", "apropos", "projets", "competences", "experience", "contact", "galerie"]
+    .map(id => document.getElementById(id))
     .filter(Boolean);
 
-const links = Array.from(document.querySelectorAll(".nav__link"));
+const navItems = $$(".nav__link");
 
-function setActiveLink() {
-    const y = window.scrollY + 120;
-    let currentId = "home";
+const setActive = () => {
+    let currentId = "accueil";
+    const y = window.scrollY + 140;
 
     for (const s of sections) {
         if (s.offsetTop <= y) currentId = s.id;
     }
 
-    links.forEach((l) => {
-        const target = l.getAttribute("href").replace("#", "");
-        l.classList.toggle("active", target === currentId);
+    navItems.forEach(a => {
+        const href = a.getAttribute("href");
+        const id = href && href.startsWith("#") ? href.slice(1) : "";
+        a.classList.toggle("is-active", id === currentId);
     });
-}
+};
 
-window.addEventListener("scroll", setActiveLink);
-window.addEventListener("load", setActiveLink);
+window.addEventListener("scroll", setActive, { passive: true });
+setActive();
 
-// Year
-document.getElementById("year").textContent = new Date().getFullYear();
+/* Gallery lightbox */
+const lightbox = $("#lightbox");
+const lightboxImg = $("#lightboxImg");
+const lightboxCaption = $("#lightboxCaption");
+const lightboxClose = $("#lightboxClose");
+
+const openLightbox = (src, alt, caption) => {
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightboxCaption.textContent = caption || "";
+};
+
+const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.src = "";
+    lightboxImg.alt = "";
+    lightboxCaption.textContent = "";
+};
+
+lightboxClose.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+});
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+});
+
+$$(".gallery__item").forEach(item => {
+    item.addEventListener("click", () => {
+        const img = $("img", item);
+        const cap = $("figcaption", item);
+        openLightbox(img.src, img.alt, cap ? cap.textContent : "");
+    });
+});
