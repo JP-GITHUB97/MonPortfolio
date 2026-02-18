@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jean Pierre Guilavogui — Portfolio GTB/GTC</title>
+    <meta name="description"
+        content="Portfolio de Jean Pierre Guilavogui — Apprenti Responsable Technique GTB/GTC (Eiffage Énergie Systèmes) — Grand Paris Express." />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="top">
+        <div class="container header__inner">
+            <a class="brand" href="#top">
+                <span class="brand__dot"></span>
+                <span class="brand__name">Jean Pierre</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <a class="nav__link active" href="#home">Accueil</a>
+                <a class="nav__link" href="#about">À propos</a>
+                <a class="nav__link" href="#projects">Projets</a>
+                <a class="nav__link" href="#skills">Compétences</a>
+                <a class="nav__link" href="#experience">Expérience</a>
+                <a class="nav__link" href="#contact">Contact</a>
+                <a class="nav__link" href="#gallery">Galerie</a>
+            </nav>
+
+            <button class="burger" id="burger" aria-label="Ouvrir le menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+        <section class="section hero" id="home">
+            <div class="container hero__grid">
+                <div class="hero__photo">
+                    <img src="assets/img/profile.jpg" alt="Photo de Jean Pierre Guilavogui" />
+                </div>
+
+                <div class="hero__content">
+                    <p class="kicker">Bonjour, moi c’est</p>
+                    <h1 class="title">
+                        <span class="title__name">Jean Pierre Guilavogui</span><br />
+                        <span class="title__role">Ingénieur GTB/GTC — Automatisme & Supervision</span>
+                    </h1>
+
+                    <p class="subtitle">
+                        Apprenti Responsable Technique GTB/GTC — <strong>Grand Paris Express</strong> (Eiffage Énergie
+                        Systèmes).<br />
+                        Conception, programmation (WAGO / Schneider M580), supervision Panorama E², essais plateforme &
+                        mise en service.
+                    </p>
+
+                    <div class="badges">
+                        <span class="badge">WAGO (Codesys / e!cockpit)</span>
+                        <span class="badge">Schneider M580 (Control Expert)</span>
+                        <span class="badge">Panorama E²</span>
+                        <span class="badge">BACnet • KNX • Modbus</span>
+                    </div>
+
+                    <div class="cta">
+                        <a class="btn btn--primary" href="assets/pdf/CV-Jean-Pierre-Guilavogui.pdf" target="_blank"
+                            rel="noopener">
+                            Télécharger mon CV
+                        </a>
+                        <a class="btn btn--ghost" href="#projects">Voir mes projets</a>
+                    </div>
+
+                    <div class="quick">
+                        <div class="quick__item">
+                            <span class="quick__label">Disponibilité</span>
+                            <span class="quick__value">CDI dès Septembre (recherche dès Mai)</span>
+                        </div>
+                        <div class="quick__item">
+                            <span class="quick__label">Localisation</span>
+                            <span class="quick__value">Île-de-France</span>
+                        </div>
+                        <div class="quick__item">
+                            <span class="quick__label">LinkedIn</span>
+                            <a class="quick__link" href="https://www.linkedin.com/in/jean-pierre-guilavogui-42807a228"
+                                target="_blank" rel="noopener">
+                                Voir mon profil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container split">
+                <div>
+                    <h2 class="h2">À propos</h2>
+                    <p class="p">
+                        Étudiant en <strong>Master 2 EEEA – IDBCI</strong> (Université de Rennes), je me spécialise dans
+                        les systèmes
+                        de bâtiment communicants : interopérabilité des protocoles, automatisme, supervision et
+                        intégration des données.
+                    </p>
+                    <p class="p">
+                        En alternance chez <strong>Eiffage Énergie Systèmes</strong>, j’interviens sur des projets
+                        GTB/GTC du
+                        <strong>Grand Paris Express</strong> (Pont de Sèvres + autres gares/ouvrages annexes) :
+                        conception, programmation, essais plateforme, mise en service et livraison.
+                    </p>
+
+                    <div class="card">
+                        <h3 class="h3">Objectif CDI</h3>
+                        <p class="p">
+                            Poste ciblé : <strong>Ingénieur GTB/GTC / Mise en service / Supervision /
+                                Automatisme</strong> (IDF).
+                            J’apporte une approche “terrain + systèmes” : exécution, validation, qualité, coordination.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="media">
+                    <img src="assets/img/profile-pro.jpg" alt="Photo professionnelle de Jean Pierre Guilavogui" />
+                    <p class="caption">Grand Paris Express — projets GTB/GTC (multi-lots CFO/CFA/CVC).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section section--alt" id="projects">
+            <div class="container">
+                <h2 class="h2">Projets</h2>
+
+                <div class="grid3">
+                    <article class="project">
+                        <h3 class="h3">Intégration GTB – BIM – BOS</h3>
+                        <p class="p">
+                            Projet M2 : intégration des données GTB dans une logique d’exploitation BOS / jumeau
+                            numérique.
+                            Solution : <strong>ABB Building Edge Pro + Vision</strong>.
+                        </p>
+                        <ul class="list">
+                            <li>Architecture d’intégration + flux de données</li>
+                            <li>Structuration points GTB & exploitation</li>
+                            <li>Livrables : schémas, captures, doc</li>
+                        </ul>
+                        <div class="project__tags">
+                            <span>ABB</span><span>GTB</span><span>BOS</span><span>BIM</span>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <h3 class="h3">LoRaWAN ↔ BACnet (Nexelec)</h3>
+                        <p class="p">
+                            Développement d’une solution de compatibilité <strong>LoRaWAN ↔ BACnet</strong>, tests sur
+                            outils BACnet (type YABE),
+                            rédaction documentation technique.
+                        </p>
+                        <ul class="list">
+                            <li>Conception interface de compatibilité</li>
+                            <li>Validation / tests BACnet</li>
+                            <li>Documentation & restitution</li>
+                        </ul>
+                        <div class="project__tags">
+                            <span>LoRaWAN</span><span>BACnet</span><span>IoT</span>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <h3 class="h3">Interopérabilité multi-protocoles</h3>
+                        <p class="p">
+                            TP : Niagara + JACE (drivers <strong>BACnet / KNX / Modbus</strong>), supervision, web
+                            services,
+                            programmation réseau (MQTT/REST).
+                        </p>
+                        <ul class="list">
+                            <li>Création station + intégration drivers</li>
+                            <li>Supervision & tests d’objets</li>
+                            <li>MQTT/REST & intégration réseau</li>
+                        </ul>
+                        <div class="project__tags">
+                            <span>Niagara</span><span>JACE</span><span>KNX</span><span>Modbus</span><span>MQTT</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="gallery">
+            <div class="container">
+                <h2 class="h2">Terrain & Réalisations</h2>
+                <p class="p">Quelques photos de mes TP et interventions (maquettes, armoires, CVC).</p>
+
+                <div class="gallery">
+                    <figure class="shot">
+                        <img src="assets/img/profile-site.jpg" alt="Intervention terrain - EPI" />
+                        <figcaption>Intervention terrain (EPI) — Grand Paris Express</figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <img src="assets/img/lab-maquette-1.jpg" alt="Maquette GTB - TP" />
+                        <figcaption>Maquette GTB — TP BACnet/KNX/Modbus</figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <img src="assets/img/lab-maquette-2.jpg" alt="JACE/WAGO - Niagara" />
+                        <figcaption>Niagara / JACE + intégration protocoles</figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <img src="assets/img/armoire-gtb-1.jpg" alt="Armoire électrique - GTB" />
+                        <figcaption>Armoire électrique — préparation & repérage</figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <img src="assets/img/hydrau-cvc.jpg" alt="CVC - hydraulique" />
+                        <figcaption>CVC — pompes, vannes, instrumentation</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section" id="skills">
+            <div class="container">
+                <h2 class="h2">Compétences</h2>
+
+                <div class="grid2">
+                    <div class="card">
+                        <h3 class="h3">GTB / GTC</h3>
+                        <p class="p">BACnet, KNX, Modbus, supervision, alarmes, trendlog, scheduling, mise en service.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="h3">Automates</h3>
+                        <p class="p">WAGO (Codesys / e!cockpit), Schneider M580 (Control Expert), essais plateforme
+                            (FAT/SAT).</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="h3">IoT / Réseaux</h3>
+                        <p class="p">MQTT, REST, IP, administration réseau, sécurité, LoRaWAN, InfluxDB.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="h3">Outils</h3>
+                        <p class="p">Panorama E², Niagara/JACE, Git/GitHub, documentation technique, coordination
+                            MOE/fournisseurs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="section section--alt" id="experience">
+            <div class="container">
+                <h2 class="h2">Expérience</h2>
+
+                <div class="timeline">
+                    <div class="tl">
+                        <div class="tl__dot"></div>
+                        <div class="tl__content">
+                            <h3 class="h3">Eiffage Énergie Systèmes — Apprenti Responsable Technique GTB/GTC</h3>
+                            <p class="meta">Île-de-France • Grand Paris Express • 2025 → aujourd’hui</p>
+                            <ul class="list">
+                                <li>Études de conception GTB/GTC (CFO/CFA/CVC) et coordination technique
+                                    multi-intervenants</li>
+                                <li>Programmation : WAGO (Codesys/e!cockpit), Schneider M580 (Control Expert)</li>
+                                <li>Supervision : Panorama E² • essais plateforme • mise en service • validation jalons
+                                    • livraison</li>
+                                <li>Échanges MOE, architectes, bureau de contrôle, sous-traitants, fournisseurs</li>
+                            </ul>
+                            <p class="p"><strong>Gare principale :</strong> Pont de Sèvres • Autres : Le Blanc-Mesnil,
+                                La Courneuve, Vitry Centre + OA.</p>
+                        </div>
+                    </div>
+
+                    <div class="tl">
+                        <div class="tl__dot"></div>
+                        <div class="tl__content">
+                            <h3 class="h3">Nexelec — Stagiaire Développement Solutions IoT</h3>
+                            <p class="meta">Vannes • 05/2024 → 08/2024</p>
+                            <ul class="list">
+                                <li>Compatibilité LoRaWAN ↔ BACnet (conception, tests, validation)</li>
+                                <li>Documentation technique & restitution</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tl">
+                        <div class="tl__dot"></div>
+                        <div class="tl__content">
+                            <h3 class="h3">Huawei Guinée — Ingénieur de site (stage)</h3>
+                            <p class="meta">Conakry • 2022</p>
+                            <ul class="list">
+                                <li>Installation/configuration équipements réseau, diagnostics & maintenance</li>
+                                <li>Rapports techniques et recommandations d’amélioration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="h2">Contact</h2>
+
+                <div class="contact">
+                    <div class="card">
+                        <h3 class="h3">Disponible pour CDI</h3>
+                        <p class="p">Tu peux me contacter directement :</p>
+                        <p class="p">
+                            <strong>Email :</strong> <a href="mailto:tonemail@gmail.com">tonemail@gmail.com</a><br />
+                            <strong>LinkedIn :</strong> <a href="https://www.linkedin.com/" target="_blank"
+                                rel="noopener">Mon profil</a><br />
+                            <strong>Localisation :</strong> Île-de-France
+                        </p>
+                    </div>
+
+                    <form class="form" name="contact" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact" />
+                        <label>
+                            Nom
+                            <input name="name" type="text" placeholder="Votre nom" required>
+                        </label>
+                        <label>
+                            Email
+                            <input name="email" type="email" placeholder="Votre email" required>
+                        </label>
+                        <label>
+                            Message
+                            <textarea name="message" placeholder="Votre message" required></textarea>
+                        </label>
+                        <button class="btn btn--primary" type="submit">Envoyer</button>
+                        <p class="caption">Formulaire géré par Netlify (sans backend).</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p>© <span id="year"></span> Jean Pierre Guilavogui — Portfolio GTB/GTC</p>
+            <a class="top" href="#top">↑ Retour en haut</a>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

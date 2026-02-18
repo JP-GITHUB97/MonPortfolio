@@ -1,9 +1,0 @@
-theme: minima
-title: "Jean Pierre Guilavogui — Portfolio"
-description: "GTB/GTC | Automates WAGO & Schneider M580 | Supervision Panorama E² | Grand Paris Express"
-markdown: kramdown
-header_pages:
-  - _pages/experience.md
-  - _pages/projects.md
-  - _pages/skills.md
-  - _pages/contact.md
